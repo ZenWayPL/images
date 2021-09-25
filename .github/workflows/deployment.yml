@@ -2,13 +2,10 @@ name: Build deployment images
 
 on:
   push:
-    branches: ['release']
+    branches:
+      - main
     paths:
      - deployment/**
-
-env:
-  REGISTRY: ghcr.io
-  IMAGE_NAME: ${{ github.repository }}
 
 jobs:
   push:
@@ -36,4 +33,4 @@ jobs:
           platforms: linux/amd64
           file: ./deployment/${{ matrix.deployment }}/Dockerfile
           push: true
-          tags: ghcr.io/${{ github.repository_owner }}/deployment:${{ matrix.deployment }}
+          tags: ghcr.io/zenwaypl/deployment:${{ matrix.deployment }}
